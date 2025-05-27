@@ -89,32 +89,27 @@ public class changeScene : MonoBehaviour
 
     public void GotoFinishBlue() {
         ApplyFinalScoreWithBonus();
-        SceneManager.LoadScene("FinishBlue");
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene("BonusPointsBlue");
     }
 
     public void GotoFinishRed() {
         ApplyFinalScoreWithBonus();
-        SceneManager.LoadScene("FinishRed");
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene("BonusPointsRed");
     }
 
     public void GotoFinishYellow() {
         ApplyFinalScoreWithBonus();
-        SceneManager.LoadScene("FinishYellow");
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene("BonusPointsYellow");
     }
 
     public void GotoFinishPink() {
         ApplyFinalScoreWithBonus();
-        SceneManager.LoadScene("FinishPink");
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene("BonusPointsPink");
     }
 
     public void GotoFinishPurple() {
         ApplyFinalScoreWithBonus();
-        SceneManager.LoadScene("FinishPurple");
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene("BonusPointsPurple");
     }
 
     public void GoToSceneFour() { // unsused now
