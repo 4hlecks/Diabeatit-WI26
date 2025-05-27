@@ -103,7 +103,7 @@ public class LunchBoxDisplay : MonoBehaviour
 
                     if (isPenalized)
                     {
-                        foodText.text = foodName;
+                        foodText.text = foodName + " (-0.5x)";
                         foodText.color = Color.red;
                     }
                     else
