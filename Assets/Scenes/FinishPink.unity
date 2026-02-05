@@ -277,7 +277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.42529464, y: -74.36896}
+  m_AnchoredPosition: {x: 0.42529464, y: -90}
   m_SizeDelta: {x: 184.1556, y: 25.2688}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &75077442
@@ -1133,7 +1133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.5351946, y: -105.86895}
+  m_AnchoredPosition: {x: 3.5351946, y: -124}
   m_SizeDelta: {x: 194.29, y: 27.0073}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &536294956
@@ -1316,6 +1316,8 @@ MonoBehaviour:
   food4: {fileID: 0}
   food5: {fileID: 0}
   food6: {fileID: 0}
+  finalPointsText: {fileID: 0}
+  dialogPopupPrefab: {fileID: 5845638976931989304, guid: e0a529ee112eb4c5fba8011aa6489856, type: 3}
 --- !u!1 &844741751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,7 +1352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.236295, y: -17.168953}
+  m_AnchoredPosition: {x: 10.236295, y: -22}
   m_SizeDelta: {x: 203.76, y: 25.2688}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &844741753
@@ -1429,7 +1431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.76679444, y: 16.931046}
+  m_AnchoredPosition: {x: 0.76679444, y: 12}
   m_SizeDelta: {x: 184.15, y: 25.2688}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1300582102
@@ -2036,7 +2038,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.5351946, y: -46.177956}
+  m_AnchoredPosition: {x: 3.5351946, y: -56}
   m_SizeDelta: {x: 189.6868, y: 24.4868}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743975364

@@ -133,7 +133,7 @@ public class LunchBoxManager : MonoBehaviour
     This is a function created to implement point penalities for lunch boxes swith items in the same category. This
     is done to help promote a well rounded lunch, rather than getting the max points for repeated high point items
     */
-    private int CalculateCategoryPenalty()
+    public int CalculateCategoryPenalty()
     {
         Dictionary<ItemType, List<Item>> typeToItems = new Dictionary<ItemType, List<Item>>();
         int penalty = 0;

@@ -9,6 +9,38 @@ public class LunchBoxDisplay : MonoBehaviour
     public GameObject inventoryItemPrefab; // Prefab for InventoryItem
     public Text food1, food2, food3, food4, food5, food6; //declare foods
     public Text finalPointsText; // Reference to the final score text UI element
+    public GameObject dialogPopupPrefab; // Prefab for the dialog popup
+
+    private GameObject dialogInstance;
+    private Text dialogText;
+
+    // Gives us the ability to have each item have its own clickable dialong in the display scene
+    void Awake() 
+    {
+        if (dialogPopupPrefab != null)
+        {
+
+            Canvas canvas = FindObjectOfType<Canvas>();
+            if (canvas != null)
+            {
+                dialogInstance = Instantiate(dialogPopupPrefab, canvas.transform);
+                
+                RectTransform rectTransform = dialogInstance.GetComponent<RectTransform>();
+                if (rectTransform != null)
+                {
+                    rectTransform.anchorMin = new Vector2(0.7f, 0.5f);
+                    rectTransform.anchorMax = new Vector2(0.7f, 0.5f);
+                    rectTransform.pivot = new Vector2(0.5f, 0.5f);
+                    rectTransform.anchoredPosition = new Vector2(-162f, -75f);
+                }
+
+                dialogText = dialogInstance.GetComponentInChildren<Text>();
+                
+                // Hide the dialog initially
+                dialogInstance.SetActive(false);
+            }
+        }
+    }
 
     void Start() { LoadDrink(); LoadItemsFromSceneData();}
 
@@ -71,7 +103,7 @@ public class LunchBoxDisplay : MonoBehaviour
 
                     if (isPenalized)
                     {
-                        foodText.text = foodName;
+                        foodText.text = foodName + " (-0.5x)";
                         foodText.color = Color.red;
                     }
                     else
@@ -94,6 +126,7 @@ public class LunchBoxDisplay : MonoBehaviour
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitializeItem(item); // Initialize the item in the slot
         newItemGo.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        AddClickHandler(newItemGo, item);
     }
 
     void SpawnDrinkInSlot(Item item, FoodSlot slot)
@@ -102,5 +135,17 @@ public class LunchBoxDisplay : MonoBehaviour
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitializeItem(item); // Initialize the item in the slot
         newItemGo.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+        
+        // Add the click handler
+        AddClickHandler(newItemGo, item);
+    }
+
+    void AddClickHandler(GameObject itemObject, Item itemData)
+    {
+        ItemClickHandler clickHandler = itemObject.AddComponent<ItemClickHandler>();
+        clickHandler.itemData = itemData;
+        
+        clickHandler.dialogPopup = dialogInstance;
+        clickHandler.dialogText = dialogText;
     }
 }
