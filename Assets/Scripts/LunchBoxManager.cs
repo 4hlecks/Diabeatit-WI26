@@ -30,6 +30,7 @@ public class LunchBoxManager : MonoBehaviour
                 SpawnNewItem(item, coasterSlot);
                 sceneData.drinkInSlot.Add(item);
                 sceneData.receiptFood.Add(item.Food);
+                sceneData.receiptItems.Add(item);
 
                 //Gluccy's script
                 scriptName = GameObject.Find("allFood").GetComponent<Text>(); //JOANN EDIT 
@@ -60,6 +61,7 @@ public class LunchBoxManager : MonoBehaviour
                 SpawnNewItem(item, slot); // Add item to the slot
                 sceneData.foodInSlots.Add(item);
                 sceneData.receiptFood.Add(item.Food);
+                sceneData.receiptItems.Add(item);
 
                 //Gluccy's script
                 scriptName = GameObject.Find("allFood").GetComponent<Text>(); //JOANN EDIT 
@@ -99,22 +101,9 @@ public class LunchBoxManager : MonoBehaviour
 
     public void updateTotalPoints()
     {
-        const int maxPoints = 100;
-        int total = 0;
-
-        foreach (Item item in sceneData.foodInSlots)
-            total += item.points;
-
-        foreach (Item item in sceneData.drinkInSlot)
-            total += item.points;
-
-        total -= CalculateCategoryPenalty();
-
-
-        int normalizedPoints = Mathf.RoundToInt((total / (float)maxPoints) * 100);
-        normalizedPoints = Mathf.Clamp(normalizedPoints, 0, 100);
-
-        sceneData.TotalPoints = normalizedPoints;
+        // Use centralized scoring rules
+        var result = LunchboxScoring.RecalculateAndStore();
+        int normalizedPoints = result.FinalPoints;
 
         if (totalPointsTxt != null)
         { //update total points
@@ -127,43 +116,5 @@ public class LunchBoxManager : MonoBehaviour
             totalPointsTxt = GameObject.Find("tmpPoints").GetComponent<Text>(); //find text gameObject if u cannot find it manually
             totalPointsTxt.text = ($"{normalizedPoints}"); //then update total points
         }
-    }
-
-    /* 
-    This is a function created to implement point penalities for lunch boxes swith items in the same category. This
-    is done to help promote a well rounded lunch, rather than getting the max points for repeated high point items
-    */
-    private int CalculateCategoryPenalty()
-    {
-        Dictionary<ItemType, List<Item>> typeToItems = new Dictionary<ItemType, List<Item>>();
-        int penalty = 0;
-
-        foreach (Item foodItem in sceneData.foodInSlots)
-        {
-            if (foodItem == null) continue;
-            if (foodItem.type == ItemType.Drink) continue;
-
-            ItemType type = foodItem.type;
-
-            if (!typeToItems.ContainsKey(type))
-                typeToItems[type] = new List<Item>();
-
-            typeToItems[type].Add(foodItem);
-        }
-
-        foreach (var entry in typeToItems)
-        {
-            List<Item> itemsOfType = entry.Value;
-
-            if (itemsOfType.Count > 1)
-            {
-                for (int i = 1; i < itemsOfType.Count; i++)
-                {
-                    penalty += Mathf.RoundToInt(itemsOfType[i].points * 0.5f); 
-                }
-            }
-        }
-
-        return penalty;
     }
 }
