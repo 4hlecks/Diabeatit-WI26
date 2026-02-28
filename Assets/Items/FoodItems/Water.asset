@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 3
   points: 10
   image: {fileID: 21300000, guid: cd9014c127fa1414cbfa2d62d6b48ad9, type: 3}
-  Food: Water - 10 points
+  Food: Water
   script: Great choice of drink! Water has no calories and zero sugar! Drinking 5-6
     cups of water a day prevents dehydration and grumpiness.

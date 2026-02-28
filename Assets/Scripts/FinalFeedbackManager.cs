@@ -5,8 +5,10 @@ using TMPro;
 
 /// <summary>
 /// Attach this to Finish scenes.
-/// It shows one message at a time in the "script" textbox and replaces {POINTS} with the final score.
-/// Also sanitizes messages to a single paragraph (no line breaks) and enables TMP auto-sizing.
+/// Shows one feedback entry at a time in the "script" textbox.
+/// Format:
+///   "{Title} (+N Bonus Points) You earned ___ points in total! {Body}"
+/// Forces single paragraph and enables TMP auto-sizing.
 /// </summary>
 public class FinalFeedbackManager : MonoBehaviour
 {
@@ -23,17 +25,24 @@ public class FinalFeedbackManager : MonoBehaviour
     public float fontSizeMin = 18f;
 
     private int index = 0;
-    private List<string> msgs = new List<string>();
+    private List<sceneData.FeedbackEntry> entries = new List<sceneData.FeedbackEntry>();
 
     private void Start()
     {
         LunchboxScoring.RecalculateAndStore();
 
-        msgs = (sceneData.feedbackMessages != null && sceneData.feedbackMessages.Count > 0)
-            ? new List<string>(sceneData.feedbackMessages)
-            : new List<string> { "You earned {POINTS} points! Nice choices! Try to include a few different food groups next time!" };
+        entries = (sceneData.feedbackEntries != null && sceneData.feedbackEntries.Count > 0)
+            ? new List<sceneData.FeedbackEntry>(sceneData.feedbackEntries)
+            : new List<sceneData.FeedbackEntry>
+            {
+                new sceneData.FeedbackEntry
+                {
+                    title = "Nice choices!",
+                    body = "Try to include a few different food groups next time.",
+                    bonus = 0
+                }
+            };
 
-        // TMP auto-size so text shrinks if it would overflow the box
         if (scriptTMP != null && enableAutoSize)
         {
             scriptTMP.enableAutoSizing = true;
@@ -52,25 +61,27 @@ public class FinalFeedbackManager : MonoBehaviour
 
     private void Render()
     {
-        string body = msgs[Mathf.Clamp(index, 0, msgs.Count - 1)];
+        int safeIndex = Mathf.Clamp(index, 0, entries.Count - 1);
+        var e = entries[safeIndex];
 
-        // Replace placeholder with actual score
-        body = body.Replace("{POINTS}", sceneData.FinalPoints.ToString());
+        string bonusPart = (e.bonus > 0) ? $"(+{e.bonus} Bonus Points) " : "";
+        string text = $"{e.title} {bonusPart}You earned {sceneData.FinalPoints} points in total! {e.body}";
 
-        // Force single-paragraph formatting even if a string contains line breaks
-        body = body.Replace("\r", " ").Replace("\n", " ");
-        while (body.Contains("  ")) body = body.Replace("  ", " ");
+        // Force single paragraph
+        text = text.Replace("\r", " ").Replace("\n", " ");
+        while (text.Contains("  ")) text = text.Replace("  ", " ");
+        text = text.Trim();
 
-        if (scriptTMP != null) scriptTMP.text = body;
-        if (scriptText != null) scriptText.text = body;
+        if (scriptTMP != null) scriptTMP.text = text;
+        if (scriptText != null) scriptText.text = text;
 
         if (nextButton != null)
-            nextButton.gameObject.SetActive(index < msgs.Count - 1);
+            nextButton.gameObject.SetActive(index < entries.Count - 1);
     }
 
     public void NextMessage()
     {
-        if (index < msgs.Count - 1)
+        if (index < entries.Count - 1)
         {
             index++;
             Render();

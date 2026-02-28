@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 6
   points: 6
   image: {fileID: 21300000, guid: 96d77624d73664900b59c9bec0ad2366, type: 3}
-  Food: Cereal - 6 points
+  Food: Cereal
   script: "Yum! Whole Grain Cereal can have protein, essential vitamins, and antioxidants!
     It\u2019s great to have with calcium-heavy dairy."

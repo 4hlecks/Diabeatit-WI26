@@ -15,5 +15,5 @@ MonoBehaviour:
   type: 2
   points: 4
   image: {fileID: 21300000, guid: a6aeda9fb7bfd4aec8d78aad44a79295, type: 3}
-  Food: Crackers - 4 points
+  Food: Crackers
   script: Crackers go well with lots of foods! Pair it with some cheese or juice!

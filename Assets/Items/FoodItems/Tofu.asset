@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 0
   points: 20
   image: {fileID: 21300000, guid: b401752d758a64b24b1c84a2245bd53a, type: 3}
-  Food: Tofu - 20 points
+  Food: Tofu
   script: Tofu has no cholesterol and helps your heart and bones stay healthy! You
     can eat it in soups!

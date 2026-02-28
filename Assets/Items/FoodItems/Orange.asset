@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 5
   points: 15
   image: {fileID: 21300000, guid: 4b12db45c5e9d4b0bb107be383c66708, type: 3}
-  Food: Orange - 15 points
+  Food: Orange
   script: Great choice! Oranges are full of vitamin C which helps keep your immune
     system strong.

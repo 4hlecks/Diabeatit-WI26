@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 3
   points: 4
   image: {fileID: 21300000, guid: 7a93dee6959df4e3c833501b636614a1, type: 3}
-  Food: Juice Box - 4 points
+  Food: Juice Box
   script: "Juice can taste yummy, but can be high in calories and contain a lot of
     sugar. Don\u2019t drink too much of it"
