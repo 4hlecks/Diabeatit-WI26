@@ -33,11 +33,100 @@ public class changeScene : MonoBehaviour
             SceneManager.LoadScene("pickBox");
     }
 
+<<<<<<< HEAD
     public void LoadTutorial2() { SceneManager.LoadScene("Tutorial2"); }
     public void LoadTutorial3() { SceneManager.LoadScene("Tutorial3"); }
     public void LoadTutorial4() { SceneManager.LoadScene("Tutorial4"); }
     public void LoadTutorial5() { SceneManager.LoadScene("Tutorial5"); }
     public void LoadTutorial6() { SceneManager.LoadScene("Tutorial6"); }
+=======
+    public void LoadTutorial2()
+    {
+        SceneManager.LoadScene("Tutorial2");
+    }
+
+     public void LoadTutorial3()
+    {
+        SceneManager.LoadScene("Tutorial3");
+    }
+
+      public void LoadTutorial4()
+    {
+        SceneManager.LoadScene("Tutorial4");
+    }
+
+      public void LoadTutorial5()
+    {
+        SceneManager.LoadScene("Tutorial5");
+    }
+          public void LoadTutorial6()
+    {
+        SceneManager.LoadScene("Tutorial6");
+    }
+
+
+
+
+    public void GoToSelectionMenu() { //unused now
+        SceneManager.LoadScene("SelectionMenu");
+    }
+    
+    public void GotoBoxRed() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BoxRed");
+    }
+
+    public void GotoBoxYellow() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BoxYellow");
+    }
+
+    public void GotoBoxBlue() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BoxBlue");
+    }
+
+    public void GotoBoxPurple() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BoxPurple");
+    }
+
+    public void GotoBoxPink() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BoxPink");
+    }
+
+    public void GotoFinishBlue() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BonusPointsBlue");
+    }
+
+    public void GotoFinishRed() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BonusPointsRed");
+    }
+
+    public void GotoFinishYellow() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BonusPointsYellow");
+    }
+
+    public void GotoFinishPink() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BonusPointsPink");
+    }
+
+    public void GotoFinishPurple() {
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("BonusPointsPurple");
+    }
+
+    public void GoToSceneFour() { // unsused now
+        ApplyFinalScoreWithBonus();
+        SceneManager.LoadScene("finishScene");
+        SceneManager.sceneLoaded += OnSceneLoaded; //check scene is loaded
+    }
+>>>>>>> main
 
     public void GoToPickBox()
     {
