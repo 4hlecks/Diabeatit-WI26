@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 3
   points: 10
   image: {fileID: 21300000, guid: 0195221e0dcf34c38be816f95051a3a2, type: 3}
-  Food: Smoothie - 10 points
+  Food: Smoothie
   script: Smoothies are a yummy, colorful way to drink fruits and milk that give
     you energy and keep you feeling fresh!

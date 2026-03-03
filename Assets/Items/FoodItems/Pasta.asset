@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 6
   points: 10
   image: {fileID: 21300000, guid: 43f5e1a1b870b48b694f5f068f8904a3, type: 3}
-  Food: Pasta - 10 points
+  Food: Pasta
   script: Pasta is a yummy and energizing food that gives your body the fuel it needs
     to run, play, and have fun!

@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 6
   points: 16
   image: {fileID: 21300000, guid: 4aed1642f8f5e4869a4c4f77f0eb513b, type: 3}
-  Food: Quinoa - 16 points
+  Food: Quinoa
   script: "Quinoa is a tiny but powerful grain! It\u2019s packed with protein and
     fiber, helping you stay full and energized."

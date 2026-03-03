@@ -42,7 +42,7 @@ public class LunchBoxDisplay : MonoBehaviour
         }
     }
 
-    void Start() { LoadDrink(); LoadItemsFromSceneData();}
+    void Start() { LoadDrink(); LoadItemsFromSceneData(); }
 
 
     void LoadDrink()
@@ -73,34 +73,23 @@ public class LunchBoxDisplay : MonoBehaviour
             //print in receipt
             if (sceneData.foodInSlots.Count == sceneData.slotPositions.Count)
             {
-                List<Item> receiptItems = new List<Item>();
-                receiptItems.AddRange(sceneData.foodInSlots);
-                receiptItems.AddRange(sceneData.drinkInSlot); // add drink if any
+                // Recalculate so receipt points match current scoring rules
+                var result = LunchboxScoring.RecalculateAndStore();
 
-                for (int i = 0; i < sceneData.receiptFood.Count; i++)
+                for (int i = 0; i < result.Receipt.Count; i++)
                 {
-                    string foodObjectName = $"food{i + 1}_txt"; //dynamically build food1_txt, food2_txt, etc.
-                    Text foodText = GameObject.Find(foodObjectName)?.GetComponent<Text>(); //find text gameObject if u cannot find it manually
-                    if (foodText == null) { Debug.LogError($"{foodObjectName} not found in scene!"); continue; }
-
-                    string foodName = sceneData.receiptFood[i];
-                    Item currentItem = receiptItems.Find(item => foodName.StartsWith(item.Food));
-                    bool isPenalized = false;
-
-                    if (currentItem != null && currentItem.type != ItemType.Drink)
+                    string foodObjectName = $"food{i + 1}_txt";
+                    Text foodText = GameObject.Find(foodObjectName)?.GetComponent<Text>();
+                    if (foodText == null)
                     {
-                        for (int j = 0; j < i; j++)
-                        {
-                            string prevFoodName = sceneData.receiptFood[j];
-                            Item previousItem = receiptItems.Find(item => prevFoodName.StartsWith(item.Food));
-                            if (previousItem != null && previousItem.type == currentItem.type)
-                            {
-                                isPenalized = true;
-                                break;
-                            }
-                        }
+                        Debug.LogError($"{foodObjectName} not found in scene!");
+                        continue;
                     }
 
+<<<<<<< HEAD
+                    foodText.text = result.Receipt[i].Text;
+                    foodText.color = result.Receipt[i].Penalized ? Color.red : Color.black;
+=======
                     if (isPenalized)
                     {
                         foodText.text = foodName + " (-0.5x)";
@@ -111,6 +100,7 @@ public class LunchBoxDisplay : MonoBehaviour
                         foodText.text = foodName;
                         foodText.color = Color.black;
                     }
+>>>>>>> main
                 }
             }
         }

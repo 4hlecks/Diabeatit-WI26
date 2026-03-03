@@ -6,6 +6,21 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedSceneGuid-0:
+<<<<<<< HEAD
+      value: 0004520507015c020b595b24422059441716492b7e2a7f69752d1c64e0b1363d
+      flags: 0
+    RecentlyUsedSceneGuid-1:
+      value: 0055035f00535d0f550a5d7716775d13404e497b79297f662c7e1832e6e2366b
+      flags: 0
+    RecentlyUsedSceneGuid-2:
+      value: 0204020554540f0c58565977157a0f4417154c7e7e2a2569287d4d31bbb23768
+      flags: 0
+    RecentlyUsedSceneGuid-3:
+      value: 5108560454575d0d5d585c23482206444e4e4a2c792971322f784b66e0e26639
+      flags: 0
+    RecentlyUsedSceneGuid-4:
+      value: 0003040257530f5d5b0c5d7212770e414f4e4f2c747e22627d2c1f37b7b4636a
+=======
       value: 0206510500015c5d5e085a7745775a1640154a797a7e2564747c1e65b2b73768
       flags: 0
     RecentlyUsedSceneGuid-1:
@@ -13,6 +28,7 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedSceneGuid-2:
       value: 0753575f520c0d590b565b20112207444e4e4d2c797c73627f7e1c65b2e5303a
+>>>>>>> main
       flags: 0
     RecentlyUsedSceneGuid-3:
       value: 5b520d0750565e5a5d580a7b42720e44134e48287e7123337a7f1b31b6e1353e
@@ -24,6 +40,15 @@ EditorUserSettings:
       value: 575356570707590e5a0b592416705c4446154f792d2c70617d7f4e6abab6616e
       flags: 0
     RecentlyUsedSceneGuid-6:
+<<<<<<< HEAD
+      value: 55020755060d0d0a580b547a11735a44434e1d2f2d2a73607e7c4f64b7b53768
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 55030505030258585b5b092741740744154f497c787e2761747d4d32e1b93560
+      flags: 0
+    RecentlyUsedSceneGuid-8:
+      value: 5453075f07535f59585a5c2641200a44144e1b7f792d7532787f4f66b2b4613a
+=======
       value: 5353520307055c0c0b5b547443270e44154e4d7e7c2c7069757b1963e7e46168
       flags: 0
     RecentlyUsedSceneGuid-7:
@@ -31,6 +56,7 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedSceneGuid-8:
       value: 0600055303050b5e5c5f5f2140775a1241161b7f7b7e77697b2c4a35e7b23261
+>>>>>>> main
       flags: 0
     RecentlyUsedSceneGuid-9:
       value: 0055035f00535d0f550a5d7716775d13404e497b79297f662c7e1832e6e2366b

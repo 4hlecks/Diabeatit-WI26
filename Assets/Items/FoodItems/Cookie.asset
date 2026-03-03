@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 0
   points: 2
   image: {fileID: 21300000, guid: 37e79665681be41fca3cd0a770595e62, type: 3}
-  Food: Cookie - 2 points
+  Food: Cookie
   script: Cookies can taste good. They are high in calories, sugar, and saturated
     fats so it's a good idea to enjoy them along with water or a fruit.

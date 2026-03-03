@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 4
   points: 10
   image: {fileID: 21300000, guid: 62f4c9f18f2bb4368b3f9b8c0a0bad53, type: 3}
-  Food: String Cheese - 10 points
+  Food: String Cheese
   script: "String cheese is a great source of protein and calcium\u2014plus, it\u2019s
     a-moo-zing for your bones!"

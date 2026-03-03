@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 1
   points: 20
   image: {fileID: 21300000, guid: f2cbb82790b6941a0a3d1457ce35470f, type: 3}
-  Food: Cucumber - 20 points
+  Food: Cucumber
   script: Cucumbers are full of water, which helps keep you hydrated and feeling
     fresh. It's especially yummy in sushi and salads.

@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 0
   points: 20
   image: {fileID: 21300000, guid: 8ef5f2adc5040424fa898e4844c07361, type: 3}
-  Food: Turkey - 20 points
+  Food: Turkey
   script: Turkey is a yummy and protein-packed food that helps keep your muscles
     strong and gives you long-lasting energy!

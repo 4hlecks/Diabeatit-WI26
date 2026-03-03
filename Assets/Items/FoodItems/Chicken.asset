@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 0
   points: 18
   image: {fileID: 21300000, guid: a57174445f6e840f0a52634c9d737613, type: 3}
-  Food: Chicken - 18 points
+  Food: Chicken
   script: 'Chicken is a super food that gives you lots of protein to help you grow
     strong. Remember to have veggies and fruits too. '

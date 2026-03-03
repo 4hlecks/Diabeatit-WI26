@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 1
   points: 18
   image: {fileID: 21300000, guid: cdda2d7d50acd438ebf755ef7963f77b, type: 3}
-  Food: Lettuce - 18 points
-  script: "That's a great choice! Lettuce is full of beta carotene for your
-    eyes, skin, and bones, and has vitamin C to keep your gums and teeth healthy."
+  Food: Lettuce
+  script: That's a great choice! Lettuce is full of beta carotene for your eyes,
+    skin, and bones, and has vitamin C to keep your gums and teeth healthy.

@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 3
   points: 3
   image: {fileID: 21300000, guid: 659baa2eb0cc94006b2cb73b36419cca, type: 3}
-  Food: Lemonade - 3 points
+  Food: Lemonade
   script: Lemonade is a sweet and tangy drink that cools you down on hot days, but
     can contain a lot of sugar!

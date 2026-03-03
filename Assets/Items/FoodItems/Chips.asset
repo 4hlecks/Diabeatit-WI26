@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 2
   points: 4
   image: {fileID: 21300000, guid: 51617b5c32bd0404eb7b4ea6289ed9bb, type: 3}
-  Food: Chips - 4 points
+  Food: Chips
   script: Chips can be a fast snack. They can  have a lot of salt and saturated fat,
     so it's a good idea to enjoy them along with water or a fruit.

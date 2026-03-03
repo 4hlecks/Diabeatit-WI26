@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 1
   points: 14
   image: {fileID: 21300000, guid: 3ccef54f4656742da96c3c39bd835d80, type: 3}
-  Food: Snap Pea - 14 points
+  Food: Snap Pea
   script: Snap peas are crunchy and full of fiber, vitamin C, and vitamin K to keep
     you strong and healthy!
