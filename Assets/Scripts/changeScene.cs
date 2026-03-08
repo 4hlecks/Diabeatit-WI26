@@ -25,12 +25,16 @@ public class changeScene : MonoBehaviour
         SceneManager.LoadScene("mainMenu");
     }
 
-    public void GoToTutorial1()
+    public void PlayButtonGo()
     {
         if (!hasPlayed)
             SceneManager.LoadScene("Tutorial1");
         else
             SceneManager.LoadScene("pickBox");
+    }
+    public void GoToTutorial1()
+    {
+        SceneManager.LoadScene("Tutorial1");
     }
 
     public void LoadTutorial2() { SceneManager.LoadScene("Tutorial2"); }
