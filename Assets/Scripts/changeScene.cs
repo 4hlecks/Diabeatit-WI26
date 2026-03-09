@@ -67,6 +67,11 @@ public class changeScene : MonoBehaviour
         SceneManager.LoadScene("BuildLunchbox");
     }
 
+    public void GoBackToBuildLunchbox()
+    {
+        SceneManager.LoadScene("BuildLunchbox");
+    }
+
     public void GoToFinish()
     {
         var r = LunchboxScoring.RecalculateAndStore();
