@@ -77,5 +77,37 @@ public class LunchboxLayoutLoader : MonoBehaviour
 
         lunchBoxManager.coasterSlot = coasterSlot;
         lunchBoxManager.FoodSlots = normalSlots.ToArray();
+
+        // Restore previously placed food items (e.g. when going back from FinishLunchbox)
+        for (int i = 0; i < sceneData.slotPositions.Count && i < sceneData.foodInSlots.Count; i++)
+        {
+            int slotIdx = sceneData.slotPositions[i];
+            if (slotIdx >= 0 && slotIdx < normalSlots.Count)
+            {
+                FoodSlot slot = normalSlots[slotIdx];
+                if (slot.GetComponentInChildren<InventoryItem>() == null)
+                {
+                    GameObject newItemGo = Instantiate(lunchBoxManager.inventoryItemPrefab);
+                    newItemGo.transform.SetParent(slot.transform, false);
+                    InventoryItem inv = newItemGo.GetComponent<InventoryItem>();
+                    inv.InitializeItem(sceneData.foodInSlots[i]);
+                }
+            }
+        }
+
+        // Restore drink in coaster
+        for (int i = 0; i < sceneData.drinkInSlot.Count; i++)
+        {
+            if (coasterSlot.GetComponentInChildren<InventoryItem>() == null)
+            {
+                GameObject newItemGo = Instantiate(lunchBoxManager.inventoryItemPrefab);
+                newItemGo.transform.SetParent(coasterSlot.transform, false);
+                InventoryItem inv = newItemGo.GetComponent<InventoryItem>();
+                inv.InitializeItem(sceneData.drinkInSlot[i]);
+            }
+        }
+
+        // Update the points display
+        lunchBoxManager.updateTotalPoints();
     }
 }
