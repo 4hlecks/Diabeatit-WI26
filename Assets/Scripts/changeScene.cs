@@ -43,8 +43,17 @@ public class changeScene : MonoBehaviour
     public void LoadTutorial5() { SceneManager.LoadScene("Tutorial5"); }
     public void LoadTutorial6() { SceneManager.LoadScene("Tutorial6"); }
     public void GoToWhatis1() { SceneManager.LoadScene("Whatis1"); }
-
     public void GoToWhatis2() { SceneManager.LoadScene("Whatis2"); }
+    public void GoToWhatis3() { SceneManager.LoadScene("Whatis3"); }
+    public void GoToWhatis4() { SceneManager.LoadScene("Whatis4"); }
+    public void GoToWhatis5() { SceneManager.LoadScene("Whatis5"); }
+    public void GoToWhatis6() { SceneManager.LoadScene("Whatis6"); }
+    public void GoToWhatis7() { SceneManager.LoadScene("Whatis7"); }
+    public void GoToWhatis8() { SceneManager.LoadScene("Whatis8"); }
+    public void GoToWhatis9() { SceneManager.LoadScene("Whatis9"); }
+    public void GoToWhatis10() { SceneManager.LoadScene("Whatis10"); }
+    public void GoToWhatis11() { SceneManager.LoadScene("Whatis11"); }
+    public void GoToWhatis12() { SceneManager.LoadScene("Whatis12"); }
     public void GoToMainMenu() { SceneManager.LoadScene("mainMenu"); }
 
     public void GoToPickBox()
