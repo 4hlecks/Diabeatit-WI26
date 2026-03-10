@@ -125,10 +125,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/UnusedScenes/finishScene2.unity
     guid: c20d2fff6b10b411997f86d20ebd5472
-  - enabled: 1
-    path: Assets/Scenes/pickBox.unity
-    guid: cabf0c78a10aaa3478f36606dbf463f8
   - enabled: 0
     path: Assets/Scenes/UnusedScenes/SelectionMenu.unity
     guid: e115f0be113c04eb7ac576196e7fe2f9
+  - enabled: 0
+    path: Assets/Scenes/pickBox.unity
+    guid: cabf0c78a10aaa3478f36606dbf463f8
   m_configObjects: {}
