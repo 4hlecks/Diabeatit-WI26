@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   points: 12
-  image: {fileID: 21300000, guid: 11e08e87b9d4a45788cc43aabc37725b, type: 3}
-  Food: Egg
-  script: Eggs help your brain think, your muscles grow, and your body stay full
-    of energy! Have you heard of deviled eggs? (Psst they are not evil at all!)
+  image: {fileID: 21300000, guid: 50c06cb09295a994e8a0c09b4563bd8f, type: 3}
+  Food: Eggs
+  script: Eggs contain various nutrients such as Vitamin A, Omega-3, and protein,
+    which are amazing for your body!

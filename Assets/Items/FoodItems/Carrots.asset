@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Carrots
   m_EditorClassIdentifier: 
   type: 1
-  points: 21
-  image: {fileID: 21300000, guid: e3947587327a947fc80f6d339fc8b91f, type: 3}
+  points: 23
+  image: {fileID: 21300000, guid: c7780af7fabbf40488550e4ea52b7e4c, type: 3}
   Food: Carrots
   script: Did you know that eating carrots 3 times a week helps your body make vitamin
     A which keeps your heart and lungs strong?

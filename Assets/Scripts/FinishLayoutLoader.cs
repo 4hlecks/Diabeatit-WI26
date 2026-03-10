@@ -10,11 +10,19 @@ public class FinishLayoutLoader : MonoBehaviour
     public GameObject inventoryItemPrefab;
     public Text totalPointsTxt;
 
-    GameObject spawnedLayout;
+    private GameObject spawnedLayout;
 
     void Start()
     {
         int index = sceneData.SelectedLunchboxIndex;
+
+        if (finishRoot == null || finishLayoutPrefabs == null || finishLayoutPrefabs.Length == 0)
+            return;
+
+        if (index < 0 || index >= finishLayoutPrefabs.Length)
+            return;
+
+        LunchboxScoring.RecalculateAndStore();
 
         spawnedLayout = Instantiate(finishLayoutPrefabs[index], finishRoot);
 
@@ -34,57 +42,65 @@ public class FinishLayoutLoader : MonoBehaviour
 
         if (totalPointsTxt == null) return;
 
-        int pts =
-            (sceneData.FinalPoints != 0 || sceneData.BonusPoints != 0 || sceneData.BasePoints != 0)
-            ? sceneData.FinalPoints
-            : sceneData.TotalPoints;
-
-        totalPointsTxt.text = pts.ToString();
+        totalPointsTxt.text = sceneData.FinalPoints.ToString();
     }
 
     void PopulateDrink()
     {
+        if (spawnedLayout == null) return;
+
         Transform coasterTf = spawnedLayout.transform.Find("CoasterSlot");
         if (coasterTf == null) return;
 
         FoodSlot coasterSlot = coasterTf.GetComponent<FoodSlot>();
         if (coasterSlot == null) return;
 
-        if (sceneData.drinkInSlot.Count == 0) return;
+        if (sceneData.drinkInSlot == null || sceneData.drinkInSlot.Count == 0) return;
 
         Item drink = sceneData.drinkInSlot[0];
-
-        GameObject newItemGo = Instantiate(inventoryItemPrefab);
-        newItemGo.transform.SetParent(coasterSlot.transform, false);
-
-        InventoryItem inv = newItemGo.GetComponent<InventoryItem>();
-        inv.InitializeItem(drink);
+        SpawnItem(drink, coasterSlot);
     }
 
     void PopulateFoods()
     {
+        if (spawnedLayout == null) return;
+
         FoodSlot[] allSlots = spawnedLayout.GetComponentsInChildren<FoodSlot>(true);
+        if (allSlots == null || allSlots.Length == 0) return;
 
         List<FoodSlot> normalSlots = new List<FoodSlot>();
 
         Transform coasterTf = spawnedLayout.transform.Find("CoasterSlot");
         FoodSlot coasterSlot = coasterTf != null ? coasterTf.GetComponent<FoodSlot>() : null;
 
-        foreach (FoodSlot slot in allSlots)
+        for (int i = 0; i < allSlots.Length; i++)
         {
-            if (slot != coasterSlot)
-                normalSlots.Add(slot);
+            if (allSlots[i] != coasterSlot)
+                normalSlots.Add(allSlots[i]);
         }
 
-        for (int i = 0; i < sceneData.foodInSlots.Count; i++)
+        int count = Mathf.Min(sceneData.foodInSlots.Count, sceneData.slotPositions.Count);
+        for (int i = 0; i < count; i++)
         {
-            if (i >= normalSlots.Count) break;
+            int slotIndex = sceneData.slotPositions[i];
+            if (slotIndex < 0 || slotIndex >= normalSlots.Count)
+                continue;
 
-            GameObject newItemGo = Instantiate(inventoryItemPrefab);
-            newItemGo.transform.SetParent(normalSlots[i].transform, false);
+            if (sceneData.foodInSlots[i] == null)
+                continue;
 
-            InventoryItem inv = newItemGo.GetComponent<InventoryItem>();
-            inv.InitializeItem(sceneData.foodInSlots[i]);
+            SpawnItem(sceneData.foodInSlots[i], normalSlots[slotIndex]);
         }
+    }
+
+    void SpawnItem(Item item, FoodSlot slot)
+    {
+        if (item == null || slot == null || inventoryItemPrefab == null) return;
+
+        GameObject newItemGo = Instantiate(inventoryItemPrefab);
+        newItemGo.transform.SetParent(slot.transform, false);
+
+        InventoryItem inv = newItemGo.GetComponent<InventoryItem>();
+        inv.InitializeItem(item);
     }
 }

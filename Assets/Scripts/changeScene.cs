@@ -20,7 +20,11 @@ public class changeScene : MonoBehaviour
         sceneData.foodInSlots.Clear();
         sceneData.drinkInSlot.Clear();
         sceneData.feedbackMessages.Clear();
+        sceneData.feedbackEntries.Clear();
         sceneData.receiptLines.Clear();
+        sceneData.receiptEntries.Clear();
+        sceneData.bonusBreakdowns.Clear();
+        sceneData.bonusSummaryText = "";
 
         SceneManager.LoadScene("mainMenu");
     }
@@ -32,11 +36,8 @@ public class changeScene : MonoBehaviour
         else
             SceneManager.LoadScene("pickBox");
     }
-    public void GoToTutorial1()
-    {
-        SceneManager.LoadScene("Tutorial1");
-    }
 
+    public void GoToTutorial1() { SceneManager.LoadScene("Tutorial1"); }
     public void LoadTutorial2() { SceneManager.LoadScene("Tutorial2"); }
     public void LoadTutorial3() { SceneManager.LoadScene("Tutorial3"); }
     public void LoadTutorial4() { SceneManager.LoadScene("Tutorial4"); }
@@ -72,11 +73,29 @@ public class changeScene : MonoBehaviour
         SceneManager.LoadScene("BuildLunchbox");
     }
 
+    public void GoToBonusPoints()
+    {
+        var r = LunchboxScoring.RecalculateAndStore();
+        Debug.Log("Base: " + r.BasePoints + ", Bonus: " + r.BonusPoints + ", Final: " + r.FinalPoints);
+        SceneManager.LoadScene("BonusPoints");
+    }
+
     public void GoToFinish()
     {
         var r = LunchboxScoring.RecalculateAndStore();
         Debug.Log("Base: " + r.BasePoints + ", Bonus: " + r.BonusPoints + ", Final: " + r.FinalPoints);
+        SceneManager.LoadScene("FinishLunchbox");
+    }
 
+    public void GoToLunchboxReport()
+    {
+        var r = LunchboxScoring.RecalculateAndStore();
+        Debug.Log("Opening report. Base: " + r.BasePoints + ", Bonus: " + r.BonusPoints + ", Final: " + r.FinalPoints);
+        SceneManager.LoadScene("LunchboxReport");
+    }
+
+    public void GoBackToFinish()
+    {
         SceneManager.LoadScene("FinishLunchbox");
     }
 }

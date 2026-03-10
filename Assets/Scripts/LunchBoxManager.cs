@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,26 +12,36 @@ public class LunchBoxManager : MonoBehaviour
 
     public bool AddItem(Item item)
     {
+        if (item == null) return false;
+
         if (item.type == ItemType.Drink)
         {
+            if (coasterSlot == null) return false;
+
             InventoryItem itemInCoaster = coasterSlot.GetComponentInChildren<InventoryItem>();
             if (itemInCoaster == null)
             {
                 SpawnNewItem(item, coasterSlot);
 
                 sceneData.drinkInSlot.Add(item);
+                sceneData.receiptItems.Add(item);
                 sceneData.receiptFood.Add(item.Food);
 
                 UpdateScriptText(item);
                 updateTotalPoints();
                 return true;
             }
+
             return false;
         }
+
+        if (FoodSlots == null) return false;
 
         for (int i = 0; i < FoodSlots.Length; i++)
         {
             FoodSlot slot = FoodSlots[i];
+            if (slot == null) continue;
+
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if (itemInSlot == null)
             {
@@ -40,6 +49,7 @@ public class LunchBoxManager : MonoBehaviour
 
                 SpawnNewItem(item, slot);
                 sceneData.foodInSlots.Add(item);
+                sceneData.receiptItems.Add(item);
                 sceneData.receiptFood.Add(item.Food);
 
                 UpdateScriptText(item);
@@ -51,7 +61,7 @@ public class LunchBoxManager : MonoBehaviour
         return false;
     }
 
-    void SpawnNewItem(Item item, FoodSlot slot)
+    private void SpawnNewItem(Item item, FoodSlot slot)
     {
         GameObject newItemGo = Instantiate(inventoryItemPrefab);
         newItemGo.transform.SetParent(slot.transform, false);
@@ -60,19 +70,19 @@ public class LunchBoxManager : MonoBehaviour
         inventoryItem.InitializeItem(item);
     }
 
-    void UpdateScriptText(Item item)
+    private void UpdateScriptText(Item item)
     {
         if (scriptName == null)
         {
             GameObject obj = GameObject.Find("allFood");
-            if (obj != null) scriptName = obj.GetComponent<Text>();
+            if (obj != null)
+                scriptName = obj.GetComponent<Text>();
         }
 
         if (scriptName != null)
             scriptName.text = item.script;
     }
 
-    // Called by InventoryItem when clicked
     public void DeleteInventoryItem(InventoryItem inv)
     {
         if (inv == null || inv.item == null)
@@ -83,10 +93,11 @@ public class LunchBoxManager : MonoBehaviour
 
         Item removed = inv.item;
 
-        // If it was in the coaster slot (drink)
         if (parentSlot != null && parentSlot == coasterSlot)
         {
-            sceneData.drinkInSlot.Remove(removed);
+            RemoveOneMatching(sceneData.drinkInSlot, removed);
+            RemoveOneMatching(sceneData.receiptItems, removed);
+
             if (!string.IsNullOrEmpty(removed.Food))
                 sceneData.receiptFood.Remove(removed.Food);
 
@@ -95,59 +106,63 @@ public class LunchBoxManager : MonoBehaviour
             return;
         }
 
-        // Normal food slot
-        sceneData.foodInSlots.Remove(removed);
-        if (!string.IsNullOrEmpty(removed.Food))
-            sceneData.receiptFood.Remove(removed.Food);
-
-        // Remove matching slot position entry
-        // Find which FoodSlots index this parentSlot is
-        if (parentSlot != null && FoodSlots != null)
+        int removedFoodIndex = sceneData.foodInSlots.IndexOf(removed);
+        if (removedFoodIndex >= 0)
         {
-            int slotIndex = -1;
-            for (int i = 0; i < FoodSlots.Length; i++)
+            sceneData.foodInSlots.RemoveAt(removedFoodIndex);
+
+            if (removedFoodIndex < sceneData.slotPositions.Count)
+                sceneData.slotPositions.RemoveAt(removedFoodIndex);
+        }
+        else
+        {
+            RemoveOneMatching(sceneData.foodInSlots, removed);
+
+            if (parentSlot != null && FoodSlots != null)
             {
-                if (FoodSlots[i] == parentSlot)
+                for (int i = 0; i < FoodSlots.Length; i++)
                 {
-                    slotIndex = i;
-                    break;
+                    if (FoodSlots[i] == parentSlot)
+                    {
+                        int posIndex = sceneData.slotPositions.IndexOf(i);
+                        if (posIndex >= 0)
+                            sceneData.slotPositions.RemoveAt(posIndex);
+                        break;
+                    }
                 }
             }
-
-            if (slotIndex >= 0 && sceneData.slotPositions != null)
-            {
-                int posListIndex = sceneData.slotPositions.IndexOf(slotIndex);
-                if (posListIndex >= 0)
-                    sceneData.slotPositions.RemoveAt(posListIndex);
-            }
         }
+
+        RemoveOneMatching(sceneData.receiptItems, removed);
+
+        if (!string.IsNullOrEmpty(removed.Food))
+            sceneData.receiptFood.Remove(removed.Food);
 
         Destroy(inv.gameObject);
         updateTotalPoints();
     }
 
+    private void RemoveOneMatching<T>(System.Collections.Generic.List<T> list, T value)
+    {
+        if (list == null) return;
+
+        int index = list.IndexOf(value);
+        if (index >= 0)
+            list.RemoveAt(index);
+    }
+
     public void updateTotalPoints()
     {
-        const int maxPoints = 100;
-        int total = 0;
-
-        foreach (Item it in sceneData.foodInSlots)
-            total += it.points;
-
-        foreach (Item it in sceneData.drinkInSlot)
-            total += it.points;
-
-        int normalizedPoints = Mathf.RoundToInt((total / (float)maxPoints) * 100);
-        normalizedPoints = Mathf.Clamp(normalizedPoints, 0, 100);
-        sceneData.TotalPoints = normalizedPoints;
+        var result = LunchboxScoring.RecalculateAndStore();
 
         if (totalPointsTxt == null)
         {
             GameObject obj = GameObject.Find("tmpPoints");
-            if (obj != null) totalPointsTxt = obj.GetComponent<Text>();
+            if (obj != null)
+                totalPointsTxt = obj.GetComponent<Text>();
         }
 
         if (totalPointsTxt != null)
-            totalPointsTxt.text = normalizedPoints.ToString();
+            totalPointsTxt.text = result.FinalPoints.ToString();
     }
 }

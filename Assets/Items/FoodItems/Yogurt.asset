@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Yogurt
   m_EditorClassIdentifier: 
   type: 4
-  points: 13
-  image: {fileID: 21300000, guid: 64bc0728c775d45ea91ecc5bd5313eaa, type: 3}
+  points: 16
+  image: {fileID: 21300000, guid: 3739841bd247f274ea7e2aaaffd43c3e, type: 3}
   Food: Yogurt
   script: Yogurt has lots of calcium, vitamin b, and protein which helps keep your
     body strong and healthy

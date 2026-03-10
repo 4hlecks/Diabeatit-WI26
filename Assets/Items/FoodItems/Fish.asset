@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: 
   type: 0
-  points: 21
-  image: {fileID: 21300000, guid: fffa43876d67849e8a014ea2efee5eff, type: 3}
+  points: 23
+  image: {fileID: 21300000, guid: dccd7bd2a784a7a43bd4d0d8ac7f23a3, type: 3}
   Food: Fish
-  script: 'Eating fish once will help your heart and brain stay super healthy. This
-    is because it has omega-3. '
+  script: Fish is like a superhero food! It's packed with omega-3 fatty acids that
+    help your heart and brain stay super healthy.

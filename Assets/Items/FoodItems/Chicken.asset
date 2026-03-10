@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Chicken
   m_EditorClassIdentifier: 
   type: 0
-  points: 18
-  image: {fileID: 21300000, guid: a57174445f6e840f0a52634c9d737613, type: 3}
+  points: 20
+  image: {fileID: 21300000, guid: 3ae160a4ebb292b45bfdb0e7d52fb2ab, type: 3}
   Food: Chicken
-  script: 'Chicken is a super food that gives you lots of protein to help you grow
-    strong. Remember to have veggies and fruits too. '
+  script: Chicken is a super food that gives you lots of protein to help you grow
+    strong. Just remember having veggies and fruits too.

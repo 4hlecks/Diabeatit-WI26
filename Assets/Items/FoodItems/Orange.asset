@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Orange
   m_EditorClassIdentifier: 
   type: 5
-  points: 15
-  image: {fileID: 21300000, guid: 4b12db45c5e9d4b0bb107be383c66708, type: 3}
+  points: 20
+  image: {fileID: 21300000, guid: 618236fb59bbe1b4cab2d75a57535ee5, type: 3}
   Food: Orange
-  script: Great choice! Oranges are full of vitamin C which helps keep your immune
-    system strong.
+  script: Oranges are full of vitamin C, which helps protect your body and keep you
+    feeling strong!

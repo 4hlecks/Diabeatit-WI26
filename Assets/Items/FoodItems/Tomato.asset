@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Tomato
   m_EditorClassIdentifier: 
   type: 5
-  points: 20
-  image: {fileID: 21300000, guid: 9730c2f1d9f234109a8bb5777f9b8d17, type: 3}
+  points: 18
+  image: {fileID: 21300000, guid: a34185932debfd7488e8d06888ebc5ab, type: 3}
   Food: Tomato
   script: That's a great choice! Tomatoes are loaded with antioxidants which help
     maintain a healthy heart!

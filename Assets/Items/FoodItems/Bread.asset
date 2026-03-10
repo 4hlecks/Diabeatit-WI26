@@ -16,6 +16,5 @@ MonoBehaviour:
   points: 12
   image: {fileID: 21300000, guid: b6cab7616176f4b0fada9a0dece07ecf, type: 3}
   Food: Bread
-  script: Yum! Whole Grain Bread has lots of fiber, which gives you lots of energy
-    and it is good for your stomach health! Make sure to have some protein with it
-    too.
+  script: Yum! Wholegrain Bread has lots of fiber, which gives you lots of energy
+    and it is good for your stomach health!

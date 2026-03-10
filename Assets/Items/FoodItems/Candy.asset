@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   points: 2
-  image: {fileID: 21300000, guid: d32ede46fb1524c08aae5f6147c695de, type: 3}
+  image: {fileID: 21300000, guid: 42a48f9d70e823f4980c8057b37f9cfb, type: 3}
   Food: Candy
   script: "Candy can be a sweet snack, but it contains lots of sugar. Don\u2019t
     eat too much of it!"

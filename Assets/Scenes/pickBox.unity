@@ -991,8 +991,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1059,64 +1059,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497465472}
   m_CullTransparentMesh: 1
---- !u!1 &1533386174
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1533386176}
-  - component: {fileID: 1533386175}
-  m_Layer: 0
-  m_Name: ColorManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1533386175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533386174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050c51c9397cfe14197ec70598529d70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lunchBoxImage: {fileID: 0}
-  coasterImage: {fileID: 0}
-  lunchboxSprites:
-  - {fileID: 21300000, guid: 0a3bc5fef7d83284db58c31c64d49c84, type: 3}
-  - {fileID: 21300000, guid: 7b9857f05bacc6849ab1c4b541614f69, type: 3}
-  - {fileID: 21300000, guid: 6e88b337f8926ce4ea048ce80921bf1a, type: 3}
-  - {fileID: 21300000, guid: 57ff2f815c0ebee4b91d3eef84345a6e, type: 3}
-  - {fileID: 21300000, guid: 21e151e6c20862047943797d3db5f75f, type: 3}
-  coasterSprites:
-  - {fileID: 21300000, guid: 31c509d8fb31b41eeb9461ec4b5dc480, type: 3}
-  - {fileID: 21300000, guid: 84c87545fde7c4d1d829d31f978aec64, type: 3}
-  - {fileID: 21300000, guid: 9c8a673c788234a0597926751556f9f9, type: 3}
-  - {fileID: 21300000, guid: f7711472920264a818e91d726394a933, type: 3}
-  - {fileID: 21300000, guid: 155ee1cdc7ad54342a54e8dad6a221dd, type: 3}
---- !u!4 &1533386176
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533386174}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 446.68103, y: 230.99527, z: -6.564702}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1554737275 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4177927941813000937, guid: c6b5bad2fdd0d5f44a28c7abdc7013ae, type: 3}
@@ -1243,9 +1185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7003875c83f1446d8f30fec15c8b717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FoodSlotsFinal: []
-  inventoryItemPrefab: {fileID: 0}
-  totalPointsTxt: {fileID: 0}
 --- !u!1001 &6479297622759729349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1390,4 +1329,3 @@ SceneRoots:
   - {fileID: 763406607}
   - {fileID: 1973853637}
   - {fileID: 789162600}
-  - {fileID: 1533386176}

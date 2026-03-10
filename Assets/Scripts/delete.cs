@@ -9,9 +9,7 @@ public class delete : MonoBehaviour
         lunchBoxManager = FindObjectOfType<LunchBoxManager>();
 
         if (lunchBoxManager == null)
-        {
             Debug.LogError("delete.cs: Could not find LunchBoxManager in scene.");
-        }
     }
 
     public void RemoveItem(int num)
@@ -43,24 +41,29 @@ public class delete : MonoBehaviour
         if (itemInSlot == null || itemInSlot.item == null)
             return;
 
-        // Remove from sceneData in a consistent way
         Item removedItem = itemInSlot.item;
 
-        // Remove the item from foodInSlots
-        sceneData.foodInSlots.Remove(removedItem);
-
-        // Remove one matching receipt entry
-        if (!string.IsNullOrEmpty(removedItem.Food))
-            sceneData.receiptFood.Remove(removedItem.Food);
-
-        // Remove matching slot position entry (if present)
-        // slotPositions stores indices of slots used when items were added
-        if (sceneData.slotPositions != null)
+        int removedFoodIndex = sceneData.foodInSlots.IndexOf(removedItem);
+        if (removedFoodIndex >= 0)
         {
+            sceneData.foodInSlots.RemoveAt(removedFoodIndex);
+
+            if (removedFoodIndex < sceneData.slotPositions.Count)
+                sceneData.slotPositions.RemoveAt(removedFoodIndex);
+        }
+        else
+        {
+            sceneData.foodInSlots.Remove(removedItem);
+
             int posIndex = sceneData.slotPositions.IndexOf(num);
             if (posIndex >= 0)
                 sceneData.slotPositions.RemoveAt(posIndex);
         }
+
+        RemoveOneMatching(sceneData.receiptItems, removedItem);
+
+        if (!string.IsNullOrEmpty(removedItem.Food))
+            sceneData.receiptFood.Remove(removedItem.Food);
 
         Destroy(itemInSlot.gameObject);
 
@@ -89,7 +92,8 @@ public class delete : MonoBehaviour
 
         Item removedDrink = itemInSlot.item;
 
-        sceneData.drinkInSlot.Remove(removedDrink);
+        RemoveOneMatching(sceneData.drinkInSlot, removedDrink);
+        RemoveOneMatching(sceneData.receiptItems, removedDrink);
 
         if (!string.IsNullOrEmpty(removedDrink.Food))
             sceneData.receiptFood.Remove(removedDrink.Food);
@@ -98,5 +102,14 @@ public class delete : MonoBehaviour
 
         lunchBoxManager.updateTotalPoints();
         Debug.Log("Remove Drink: Deleted " + removedDrink.type + " with " + removedDrink.points + " points. Total points: " + sceneData.TotalPoints);
+    }
+
+    private void RemoveOneMatching<T>(System.Collections.Generic.List<T> list, T value)
+    {
+        if (list == null) return;
+
+        int index = list.IndexOf(value);
+        if (index >= 0)
+            list.RemoveAt(index);
     }
 }
