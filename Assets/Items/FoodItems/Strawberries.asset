@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb92dc8f5adce8f4d874500c67b6ebfc, type: 3}
+  m_Name: Strawberries
+  m_EditorClassIdentifier: 
+  type: 5
+  points: 15
+  image: {fileID: 21300000, guid: b51621ff2988729459c76cf657e221fb, type: 3}
+  Food: Strawberries
+  script: 'Strawberries are packed with vitamin C to help keep your body strong and
+    healthy! '

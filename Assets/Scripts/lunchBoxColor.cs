@@ -3,37 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class lunchBoxColor : MonoBehaviour
+public class LunchBoxColor : MonoBehaviour
 {
     public Image lunchBoxImage;
-    public Sprite[] color;
-    public static int lunchBoxInt = 0;
     public Image coasterImage;
-    public Sprite[] coasterColor;
-    public static int coasterInt = 0;
+
+    public Sprite[] lunchboxSprites;
+    public Sprite[] coasterSprites;
+
+    // Start is called before the first frame update
     void Start()
     {
-        ChangeLunchBoxColor(lunchBoxInt);
+        ApplySelectedColor();
     }
-    public void ChangeLunchBoxColor(int index)
-    {
-        if (index >= 0 && index < color.Length)
-        {
-            lunchBoxImage.sprite = color[index];
-            coasterImage.sprite = coasterColor[index];
 
+    public void ApplySelectedColor()
+    {
+        int index = sceneData.SelectedLunchboxIndex;
+        if (lunchBoxImage != null && lunchboxSprites != null && index >= 0 && index < lunchboxSprites.Length)
+            {
+                lunchBoxImage.sprite = lunchboxSprites[index];
         }
         else
-        {
-            Debug.LogWarning("Invalid index.");
+            {
+                Debug.LogWarning("Lunchbox sprite index invalid or not assigned."); 
+            }
+        if (coasterImage != null && coasterSprites != null && index >= 0 && index < coasterSprites.Length)
+            {
+                coasterImage.sprite = coasterSprites[index];
         }
-        
+        else
+            {
+                Debug.LogWarning("Coaster sprite index invalid or not assigned."); 
+        }
     }
-    public void changeColor(int index)
-    {
-        lunchBoxColor.lunchBoxInt = index;
-        lunchBoxColor.coasterInt = index;
-    }
-
-
 }

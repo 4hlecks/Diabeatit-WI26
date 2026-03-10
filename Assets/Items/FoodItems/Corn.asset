@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Corn
   m_EditorClassIdentifier: 
   type: 1
-  points: 20
-  image: {fileID: 21300000, guid: 4dfd7e5d6e5a0404ebb60ce05202ace2, type: 3}
-  Food: Corn - 20 points
-  script: Corn is not only tasty, but gives you energy and fiber. You can eat it
-    on the cob, in salads, or as a snack!
+  points: 22
+  image: {fileID: 21300000, guid: dc3af722d74becc42b8ae5b0aee45419, type: 3}
+  Food: Corn
+  script: 'Corn gives your body energy and has nutrients that help keep you strong
+    for the day! '

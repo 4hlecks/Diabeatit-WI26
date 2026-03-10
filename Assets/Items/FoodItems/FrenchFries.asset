@@ -15,6 +15,5 @@ MonoBehaviour:
   type: 2
   points: 4
   image: {fileID: 21300000, guid: c56e0beca9ec9463e8ff67aa664e2855, type: 3}
-  Food: Fries - 4 points
-  script: 'French Fries can taste good, but are high in calories and trans fat. Remember
-    to enjoy them along with water or a fruit. '
+  Food: Fries
+  script: French Fries can taste good, but are high in calories and trans fat.

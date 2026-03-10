@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 5
   points: 21
   image: {fileID: 21300000, guid: ceba6a2c8ed14408eb14d0d83b684f6a, type: 3}
-  Food: Grapes - 12 points
+  Food: Grapes
   script: Grapes are packed with vitamin C, vitamin K, and antioxidants to keep your
     brain sharp!

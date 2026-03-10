@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   points: 14
-  image: {fileID: 21300000, guid: 38cfe2a13d92f424bbad4351fe7518d9, type: 3}
-  Food: Granola - 15 points
-  script: Granola bars are a convenient snack! Some can have lots of sugar, so it's
-    good to pair them with some water or cheese!
+  image: {fileID: 21300000, guid: a2992eb47a7c290489bef901938b6d74, type: 3}
+  Food: Granola
+  script: Granola bars give you energy from grains and can be a handy snack for busy
+    days.

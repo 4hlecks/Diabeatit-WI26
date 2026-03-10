@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 5
   points: 18
-  image: {fileID: 21300000, guid: f82311c807f4d46ecb13c2657a34daca, type: 3}
-  Food: Avocado - 18 points
+  image: {fileID: 21300000, guid: d5661ba18f2697b4c89ee3473d4a9657, type: 3}
+  Food: Avocado
   script: Avocados are awesome for your heart, eyes, and bones, and they help your
     tummy with lots of fiber!

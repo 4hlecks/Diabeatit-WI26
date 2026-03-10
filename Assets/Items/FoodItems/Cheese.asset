@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Cheese
   m_EditorClassIdentifier: 
   type: 4
-  points: 10
-  image: {fileID: 21300000, guid: 36bda8d0393124dbc8024fc7c68ce8d2, type: 3}
-  Food: Cheese - 10 points
+  points: 20
+  image: {fileID: 21300000, guid: d15098eea90440546a2b030c1156f72e, type: 3}
+  Food: Cheese
   script: Cheese has calcium and protein, which helps your bones and muscles get
     strong!

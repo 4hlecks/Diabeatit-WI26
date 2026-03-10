@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 1
   points: 16
   image: {fileID: 21300000, guid: 6eb93260368a848268f469086c1b0c59, type: 3}
-  Food: Bell Pepper - 16 points
+  Food: Bell Pepper
   script: Bell peppers are crunchy and full of vitamin C to keep your immune system
     strong!

@@ -15,6 +15,6 @@ MonoBehaviour:
   type: 0
   points: 10
   image: {fileID: 21300000, guid: fe821d4950b7846f89077af44944b890, type: 3}
-  Food: Mushroom - 10 points
+  Food: Mushroom
   script: 'Mushrooms are full of vitamins and help keep your brain, bones, and immune
     system strong! '

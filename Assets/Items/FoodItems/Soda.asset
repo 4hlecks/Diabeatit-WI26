@@ -15,5 +15,5 @@ MonoBehaviour:
   type: 3
   points: 2
   image: {fileID: 21300000, guid: 351226ba82a4f414d94a2bfcb85a7501, type: 3}
-  Food: Soda - 2 points
+  Food: Soda
   script: Soda can taste good, but can be high in calories and contain a lot of sugar.

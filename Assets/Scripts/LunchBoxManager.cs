@@ -1,169 +1,168 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 public class LunchBoxManager : MonoBehaviour
 {
     public FoodSlot[] FoodSlots;
     public GameObject inventoryItemPrefab;
-    public Text totalPointsTxt; //update this to display final points
-    public Text scriptName; //"local" variable you're updating
-    public GameObject speechBubble; // Reference to the speech bubble GameObject
-    public Text allFoodText; // Reference to the allFood Text component
-    //private bool hasProteinItem = false;
+    public Text totalPointsTxt;
+    public Text scriptName;
 
-    // add coasterSlot
     public FoodSlot coasterSlot;
 
     public bool AddItem(Item item)
     {
-        // ADDED CODE HERE
-        // If the item is a drink, force it into the coaster slot
+        if (item == null) return false;
+
         if (item.type == ItemType.Drink)
         {
+            if (coasterSlot == null) return false;
+
             InventoryItem itemInCoaster = coasterSlot.GetComponentInChildren<InventoryItem>();
-            if (itemInCoaster == null) // Ensure it's empty before placing
+            if (itemInCoaster == null)
             {
                 SpawnNewItem(item, coasterSlot);
+
                 sceneData.drinkInSlot.Add(item);
+                sceneData.receiptItems.Add(item);
                 sceneData.receiptFood.Add(item.Food);
 
-                //Gluccy's script
-                scriptName = GameObject.Find("allFood").GetComponent<Text>(); //JOANN EDIT 
-                scriptName.text = item.script;
-
-                updateTotalPoints(); // Update total points visually
-                Debug.Log($"Added {item.type} with {item.points} points. Total points: {sceneData.TotalPoints}");
-                Debug.Log($"Item text: {item.Food}");
-
+                UpdateScriptText(item);
+                updateTotalPoints();
                 return true;
             }
-            else
-            {
-                Debug.Log("Coaster is already occupied!");
-                return false; // Prevent multiple drinks on the coaster
-            }
+
+            return false;
         }
 
-        // Find any empty slot
+        if (FoodSlots == null) return false;
+
         for (int i = 0; i < FoodSlots.Length; i++)
         {
             FoodSlot slot = FoodSlots[i];
+            if (slot == null) continue;
+
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if (itemInSlot == null)
             {
-                sceneData.slotPositions.Add(i); // Save the index of the filled slot
+                sceneData.slotPositions.Add(i);
 
-                SpawnNewItem(item, slot); // Add item to the slot
+                SpawnNewItem(item, slot);
                 sceneData.foodInSlots.Add(item);
+                sceneData.receiptItems.Add(item);
                 sceneData.receiptFood.Add(item.Food);
 
-                //Gluccy's script
-                scriptName = GameObject.Find("allFood").GetComponent<Text>(); //JOANN EDIT 
-                scriptName.text = item.script;
-
-                updateTotalPoints(); //update total points visually in THIS scene
-
-                Debug.Log($"Added {item.type} with {item.points} points. Total points: {sceneData.TotalPoints}"); //debug
-                Debug.Log($"Item text: {item.Food}");
-
+                UpdateScriptText(item);
+                updateTotalPoints();
                 return true;
             }
         }
+
         return false;
     }
 
-    /*
-    void SpawnNewItem(Item item, FoodSlot slot)
-    need to drag the slot in the unity interface to use
-
-    Instantiate
-    spawns item at slot position
-
-    GetComponent
-    gets the spawned items characteristics
-
-    Initialize 
-    allocates the spawned items characteristics to the item
-    */
-    void SpawnNewItem(Item item, FoodSlot slot)
+    private void SpawnNewItem(Item item, FoodSlot slot)
     {
-        GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
+        GameObject newItemGo = Instantiate(inventoryItemPrefab);
+        newItemGo.transform.SetParent(slot.transform, false);
+
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitializeItem(item);
     }
 
-
-    public void updateTotalPoints()
+    private void UpdateScriptText(Item item)
     {
-        const int maxPoints = 100;
-        int total = 0;
+        if (scriptName == null)
+        {
+            GameObject obj = GameObject.Find("allFood");
+            if (obj != null)
+                scriptName = obj.GetComponent<Text>();
+        }
 
-        foreach (Item item in sceneData.foodInSlots)
-            total += item.points;
+        if (scriptName != null)
+            scriptName.text = item.script;
+    }
 
-        foreach (Item item in sceneData.drinkInSlot)
-            total += item.points;
+    public void DeleteInventoryItem(InventoryItem inv)
+    {
+        if (inv == null || inv.item == null)
+            return;
 
-        total -= CalculateCategoryPenalty();
+        Transform parent = inv.transform.parent;
+        FoodSlot parentSlot = parent != null ? parent.GetComponent<FoodSlot>() : null;
 
+        Item removed = inv.item;
 
-        int normalizedPoints = Mathf.RoundToInt((total / (float)maxPoints) * 100);
-        normalizedPoints = Mathf.Clamp(normalizedPoints, 0, 100);
+        if (parentSlot != null && parentSlot == coasterSlot)
+        {
+            RemoveOneMatching(sceneData.drinkInSlot, removed);
+            RemoveOneMatching(sceneData.receiptItems, removed);
 
-        sceneData.TotalPoints = normalizedPoints;
+            if (!string.IsNullOrEmpty(removed.Food))
+                sceneData.receiptFood.Remove(removed.Food);
 
-        if (totalPointsTxt != null)
-        { //update total points
-            totalPointsTxt.text = ($"{normalizedPoints}");
-            Debug.Log("set text");
+            Destroy(inv.gameObject);
+            updateTotalPoints();
+            return;
+        }
+
+        int removedFoodIndex = sceneData.foodInSlots.IndexOf(removed);
+        if (removedFoodIndex >= 0)
+        {
+            sceneData.foodInSlots.RemoveAt(removedFoodIndex);
+
+            if (removedFoodIndex < sceneData.slotPositions.Count)
+                sceneData.slotPositions.RemoveAt(removedFoodIndex);
         }
         else
         {
-            Debug.Log("failed to set text");
-            totalPointsTxt = GameObject.Find("tmpPoints").GetComponent<Text>(); //find text gameObject if u cannot find it manually
-            totalPointsTxt.text = ($"{normalizedPoints}"); //then update total points
-        }
-    }
+            RemoveOneMatching(sceneData.foodInSlots, removed);
 
-    /* 
-    This is a function created to implement point penalities for lunch boxes swith items in the same category. This
-    is done to help promote a well rounded lunch, rather than getting the max points for repeated high point items
-    */
-    public int CalculateCategoryPenalty()
-    {
-        Dictionary<ItemType, List<Item>> typeToItems = new Dictionary<ItemType, List<Item>>();
-        int penalty = 0;
-
-        foreach (Item foodItem in sceneData.foodInSlots)
-        {
-            if (foodItem == null) continue;
-            if (foodItem.type == ItemType.Drink) continue;
-
-            ItemType type = foodItem.type;
-
-            if (!typeToItems.ContainsKey(type))
-                typeToItems[type] = new List<Item>();
-
-            typeToItems[type].Add(foodItem);
-        }
-
-        foreach (var entry in typeToItems)
-        {
-            List<Item> itemsOfType = entry.Value;
-
-            if (itemsOfType.Count > 1)
+            if (parentSlot != null && FoodSlots != null)
             {
-                for (int i = 1; i < itemsOfType.Count; i++)
+                for (int i = 0; i < FoodSlots.Length; i++)
                 {
-                    penalty += Mathf.RoundToInt(itemsOfType[i].points * 0.5f); 
+                    if (FoodSlots[i] == parentSlot)
+                    {
+                        int posIndex = sceneData.slotPositions.IndexOf(i);
+                        if (posIndex >= 0)
+                            sceneData.slotPositions.RemoveAt(posIndex);
+                        break;
+                    }
                 }
             }
         }
 
-        return penalty;
+        RemoveOneMatching(sceneData.receiptItems, removed);
+
+        if (!string.IsNullOrEmpty(removed.Food))
+            sceneData.receiptFood.Remove(removed.Food);
+
+        Destroy(inv.gameObject);
+        updateTotalPoints();
+    }
+
+    private void RemoveOneMatching<T>(System.Collections.Generic.List<T> list, T value)
+    {
+        if (list == null) return;
+
+        int index = list.IndexOf(value);
+        if (index >= 0)
+            list.RemoveAt(index);
+    }
+
+    public void updateTotalPoints()
+    {
+        var result = LunchboxScoring.RecalculateAndStore();
+
+        if (totalPointsTxt == null)
+        {
+            GameObject obj = GameObject.Find("tmpPoints");
+            if (obj != null)
+                totalPointsTxt = obj.GetComponent<Text>();
+        }
+
+        if (totalPointsTxt != null)
+            totalPointsTxt.text = result.FinalPoints.ToString();
     }
 }

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   points: 10
-  image: {fileID: 21300000, guid: 43f5e1a1b870b48b694f5f068f8904a3, type: 3}
-  Food: Pasta - 10 points
-  script: Pasta is a yummy and energizing food that gives your body the fuel it needs
-    to run, play, and have fun!
+  image: {fileID: 21300000, guid: 013144176468c504aaa2d00ddc7896d1, type: 3}
+  Food: Pasta
+  script: Yum! Whole wheat noodles are a great source of fiber and carbohydrates!
