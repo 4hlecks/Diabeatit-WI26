@@ -4929,7 +4929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hello there! I'm Gluccy, short for glucose. Glucose is a type of sugar
+  m_text: Hello there! I'm Glucco, short for glucose. Glucose is a type of sugar
     that gives you energy to run, play, and think! It comes from the foods you eat,
     like bread, fruits, and veggies.
   m_isRightToLeft: 0
